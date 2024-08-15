@@ -69,3 +69,21 @@ kotlin {
 tasks.withType<Test> {
     useJUnitPlatform()
 }
+
+tasks.withType<Jar> {
+    enabled = false
+}
+
+tasks.withType<BootJar> {
+    enabled = true
+}
+
+tasks.named<Task>("build") {
+    doLast {
+        copy {
+            from("$buildDir/libs")
+            into("$buildDir/libs")
+            rename(".*.jar", "app.jar")
+        }
+    }
+}
