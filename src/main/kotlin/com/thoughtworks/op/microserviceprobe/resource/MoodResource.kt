@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 import io.swagger.v3.oas.annotations.parameters.RequestBody
 import io.swagger.v3.oas.annotations.responses.ApiResponse
 import io.swagger.v3.oas.annotations.responses.ApiResponses
+import org.springframework.http.MediaType
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
@@ -24,20 +25,20 @@ interface MoodResource {
             description = "OK",
             content = arrayOf(
                 (Content(
-                    mediaType = "application/json", array = (
+                    mediaType = MediaType.APPLICATION_JSON_VALUE, array = (
                         ArraySchema(schema = Schema(implementation = MoodDTO::class))
                     )
                 ))
             )
         )
     ])
-    @GetMapping("/moods")
+    @GetMapping("/moods", produces = [MediaType.APPLICATION_JSON_VALUE])
     fun getMoods(): Flux<MoodDTO>
 
     @Operation(summary = "Create a mood")
     @RequestBody(
         content = [
-            Content(mediaType = "application/json", schema = Schema(implementation = MoodDTO::class))
+            Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = Schema(implementation = MoodDTO::class))
         ]
     )
     @ApiResponses(value = [
@@ -45,11 +46,11 @@ interface MoodResource {
             responseCode = "201",
             description = "Created",
             content = [
-                Content(mediaType = "text/plain", schema = Schema(implementation = MoodDTO::class))
+                Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = Schema(implementation = MoodDTO::class))
             ]
         )
     ])
-    @PostMapping("/moods")
+    @PostMapping("/moods", consumes = [MediaType.APPLICATION_JSON_VALUE], produces = [MediaType.APPLICATION_JSON_VALUE])
     fun postMood(@Validated @org.springframework.web.bind.annotation.RequestBody moodDTO: MoodDTO): Mono<MoodDTO>
 
     @Operation(summary = "Get mean mood")
@@ -58,10 +59,10 @@ interface MoodResource {
             responseCode = "200",
             description = "OK",
             content = [
-                Content(mediaType = "text/plain", schema = Schema(implementation = MoodEnum::class))
+                Content(mediaType = MediaType.TEXT_PLAIN_VALUE, schema = Schema(implementation = String::class))
             ]
         )
     ])
-    @GetMapping("/moods/mean")
+    @GetMapping("/moods/mean", produces = [MediaType.TEXT_PLAIN_VALUE])
     fun getMoodsMean(): Mono<String>
 }

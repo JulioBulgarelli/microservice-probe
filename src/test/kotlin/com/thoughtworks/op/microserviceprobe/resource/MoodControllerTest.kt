@@ -1,5 +1,6 @@
 package com.thoughtworks.op.microserviceprobe.resource
 
+import com.thoughtworks.op.microserviceprobe.BaseIT
 import com.thoughtworks.op.microserviceprobe.model.MoodDTO
 import com.thoughtworks.op.microserviceprobe.model.MoodEnum
 import org.junit.jupiter.api.Assertions.*
@@ -8,47 +9,65 @@ import org.junit.jupiter.api.Order
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestMethodOrder
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.test.context.ActiveProfiles
+import org.springframework.http.MediaType
+import org.springframework.test.web.reactive.server.WebTestClient
 
-@SpringBootTest
-@ActiveProfiles("test")
 @TestMethodOrder(MethodOrderer.OrderAnnotation::class)
 class MoodControllerTest(
     @Autowired
-    private val moodResource: MoodResource
-) {
+    private val moodResource: MoodResource,
 
-    @Test @Order(1)
+    @Autowired
+    private val webTestClient: WebTestClient
+) : BaseIT() {
+
+    @Test
+    @Order(1)
     fun `moods are retrieved successfully`() {
 
-        assertDoesNotThrow {
-            val moods = moodResource.getMoods()
+        val moods = webTestClient.get()
+            .uri("/moods")
+            .exchange()
+            .expectHeader().contentType(MediaType.APPLICATION_JSON_VALUE)
+            .expectStatus().isOk
+            .expectBodyList(MoodDTO::class.java)
+            .returnResult().responseBody
 
             assertNotNull(moods)
-            assertEquals(3, moods.count().block())
-        }
+            assertEquals(3, moods!!.size)
     }
 
-    @Test @Order(3)
+    @Test
+    @Order(3)
     fun `mood is created successfully`() {
 
-        assertDoesNotThrow {
-            val moodCreated = moodResource.postMood(MoodDTO(scale = MoodEnum.GOOD.name, comment = null)).block()
+        val moodCreated = webTestClient.post()
+            .uri("/moods")
+            .contentType(MediaType.APPLICATION_JSON)
+            .bodyValue(MoodDTO(scale = MoodEnum.GOOD.name, comment = null))
+            .exchange()
+            .expectHeader().contentType(MediaType.APPLICATION_JSON_VALUE)
+            .expectStatus().isOk
+            .expectBody(MoodDTO::class.java)
+            .returnResult().responseBody
 
-            assertNotNull(moodCreated)
-            assertEquals(MoodEnum.GOOD, MoodEnum.valueOf(moodCreated!!.scale))
-        }
+        assertNotNull(moodCreated)
+        assertEquals(MoodEnum.GOOD, MoodEnum.valueOf(moodCreated!!.scale))
     }
 
-    @Test @Order(2)
+    @Test
+    @Order(2)
     fun `mean mood is retrieved successfully`() {
 
-        assertDoesNotThrow {
-            val mood = moodResource.getMoodsMean().block()
+        val meanMoods = webTestClient.get()
+            .uri("/moods/mean")
+            .exchange()
+            .expectHeader().contentTypeCompatibleWith(MediaType.TEXT_PLAIN_VALUE)
+            .expectStatus().isOk
+            .expectBody(String::class.java)
+            .returnResult().responseBody
 
-            assertNotNull(mood)
-            assertEquals(MoodEnum.PASSIVE, MoodEnum.valueOf(mood!!))
-        }
+        assertNotNull(meanMoods)
+        assertEquals(MoodEnum.PASSIVE, MoodEnum.valueOf(meanMoods!!))
     }
 }
