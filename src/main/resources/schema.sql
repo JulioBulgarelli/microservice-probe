@@ -1,0 +1,7 @@
+DROP TABLE IF EXISTS mood;
+
+CREATE TABLE mood (
+    id SERIAL PRIMARY KEY,
+    scale TEXT NOT NULL,
+    comment TEXT DEFAULT NULL
+);

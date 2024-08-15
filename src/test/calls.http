@@ -1,0 +1,43 @@
+### GET API docs
+GET http://localhost:8080/api-docs
+
+> {%
+    client.test("api-docs are retrieved successfully", function () {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+
+### Get all moods
+GET http://localhost:8080/moods
+
+> {%
+    client.test("moods are retrieved successfully", function () {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+
+### Get the mean mood
+GET http://localhost:8080/moods/mean
+
+> {%
+    client.test("mean mood is retrieved successfully", function () {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+
+### Create a mood
+POST http://localhost:8080/moods
+Content-Type: application/json
+
+{
+  "scale": "PASSIVE",
+  "comment": "another day, same old, same old"
+}
+
+> {%
+    client.test("mood is created successfully", function () {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+
+###
