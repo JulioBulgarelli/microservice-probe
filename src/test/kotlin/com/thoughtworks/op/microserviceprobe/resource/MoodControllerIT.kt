@@ -33,7 +33,7 @@ class MoodControllerIT(
             .returnResult().responseBody
 
             assertNotNull(moods)
-            assertEquals(3, moods!!.size)
+            assertEquals(MoodEnum.PASSIVE.value, moods!!.size)
     }
 
     @Test

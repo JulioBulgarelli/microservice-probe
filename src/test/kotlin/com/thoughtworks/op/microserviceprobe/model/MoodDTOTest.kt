@@ -11,7 +11,7 @@ class MoodDTOTest {
 
         assertNotNull(mood)
         assertNotNull(mood.scale)
-        assertEquals("PASSIVE", mood.scale)
+        assertEquals(MoodEnum.PASSIVE.name, mood.scale)
         assertNull(mood.comment)
     }
 
@@ -21,7 +21,7 @@ class MoodDTOTest {
 
         assertNotNull(mood)
         assertNotNull(mood.scale)
-        assertEquals("PASSIVE", mood.scale)
+        assertEquals(MoodEnum.PASSIVE.name, mood.scale)
         assertNotNull(mood.comment)
         assertTrue(mood.comment!!.contains("test comment"))
     }
@@ -32,7 +32,7 @@ class MoodDTOTest {
 
         assertNotNull(mood)
         assertNotNull(mood.scale)
-        assertEquals("PASSIVE", mood.scale)
+        assertEquals(MoodEnum.PASSIVE.name, mood.scale)
         assertNotNull(mood.comment)
         assertTrue(mood.comment!!.contains("test comment"))
 
@@ -40,7 +40,7 @@ class MoodDTOTest {
         mood.comment = "test comment modified"
 
         assertNotNull(mood.scale)
-        assertEquals("GOOD", mood.scale)
+        assertEquals(MoodEnum.GOOD.name, mood.scale)
         assertNotNull(mood.comment)
         assertTrue(mood.comment!!.contains("modified"))
     }

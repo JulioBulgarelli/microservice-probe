@@ -13,7 +13,7 @@ class MoodTest {
         assertNotNull(mood.id)
         assertEquals(1L, mood.id)
         assertNotNull(mood.scale)
-        assertEquals(3, mood.scale.value)
+        assertEquals(MoodEnum.PASSIVE, mood.scale)
         assertNull(mood.comment)
     }
 
@@ -25,7 +25,7 @@ class MoodTest {
         assertNotNull(mood.id)
         assertEquals(1L, mood.id)
         assertNotNull(mood.scale)
-        assertEquals(3, mood.scale.value)
+        assertEquals(MoodEnum.PASSIVE, mood.scale)
         assertNotNull(mood.comment)
         assertTrue(mood.comment!!.contains("test comment"))
     }
@@ -38,7 +38,7 @@ class MoodTest {
         assertNotNull(mood.id)
         assertEquals(1L, mood.id)
         assertNotNull(mood.scale)
-        assertEquals(3, mood.scale.value)
+        assertEquals(MoodEnum.PASSIVE, mood.scale)
         assertNotNull(mood.comment)
         assertTrue(mood.comment!!.contains("test comment"))
 
@@ -49,7 +49,7 @@ class MoodTest {
         assertNotNull(mood.id)
         assertEquals(3L, mood.id)
         assertNotNull(mood.scale)
-        assertEquals(4, mood.scale.value)
+        assertEquals(MoodEnum.GOOD, mood.scale)
         assertNotNull(mood.comment)
         assertTrue(mood.comment!!.contains("modified"))
     }

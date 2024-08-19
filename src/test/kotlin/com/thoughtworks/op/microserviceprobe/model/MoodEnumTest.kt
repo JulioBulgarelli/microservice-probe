@@ -10,6 +10,7 @@ class MoodEnumTest {
         val mood: MoodEnum = MoodEnum.BAD
 
         assertEquals(MoodEnum.BAD.value, mood.value)
+        assertEquals(MoodEnum.BAD.name, mood.name)
     }
 
     @Test
@@ -19,8 +20,12 @@ class MoodEnumTest {
 
     @Test
     fun `gets the Enum by its value`() {
-        val mood: MoodEnum = MoodEnum.fromValue(3)
+        val mood1: MoodEnum = MoodEnum.fromValue(3)
 
-        assertEquals(MoodEnum.PASSIVE, mood)
+        assertEquals(MoodEnum.PASSIVE, mood1)
+
+        val mood2: MoodEnum = MoodEnum.fromValue(4)
+
+        assertEquals(MoodEnum.GOOD, mood2)
     }
 }
