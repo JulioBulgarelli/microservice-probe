@@ -3,7 +3,8 @@ package com.thoughtworks.op.microserviceprobe.resource
 import com.thoughtworks.op.microserviceprobe.BaseIT
 import com.thoughtworks.op.microserviceprobe.model.MoodDTO
 import com.thoughtworks.op.microserviceprobe.model.MoodEnum
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.MethodOrderer
 import org.junit.jupiter.api.Order
 import org.junit.jupiter.api.Test
@@ -13,9 +14,7 @@ import org.springframework.http.MediaType
 import org.springframework.test.web.reactive.server.WebTestClient
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation::class)
-class MoodControllerTest(
-    @Autowired
-    private val moodResource: MoodResource,
+class MoodControllerIT(
 
     @Autowired
     private val webTestClient: WebTestClient

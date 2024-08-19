@@ -5,7 +5,8 @@ import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.ApplicationContext
 
-class ApplicationTests(
+class ApplicationIT(
+
     @Autowired
     private val applicationContext: ApplicationContext
 ) : BaseIT() {

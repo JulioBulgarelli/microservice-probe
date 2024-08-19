@@ -2,9 +2,9 @@ spring:
   application:
     name: microservice-probe
   r2dbc:
-    url: r2dbc:postgresql://${DATABASE_URL:localhost}:${DATABASE_PORT:5432}/${DATABASE_NAME:postgres}?schema=${DATABASE_SCHEMA:ms-probe}
+    url: r2dbc:postgresql://${DATABASE_HOST:localhost}:${DATABASE_PORT:5432}/${DATABASE_NAME:postgres}?schema=${DATABASE_SCHEMA:ms-probe}
     username: ${DATABASE_USER:postgres}
-    password: ${DATABASE_PASS:abc123}
+    password: ${DATABASE_PASS:postgres}
   sql:
     init:
       mode: always

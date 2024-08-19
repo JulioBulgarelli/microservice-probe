@@ -3,53 +3,44 @@ package com.thoughtworks.op.microserviceprobe.model
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
-class MoodTest {
+class MoodDTOTest {
 
     @Test
     fun `instance is created without comment successfully`() {
-        val mood = Mood(id = 1L, scale = MoodEnum.PASSIVE, comment = null)
+        val mood = MoodDTO(scale = MoodEnum.PASSIVE.name, comment = null)
 
         assertNotNull(mood)
-        assertNotNull(mood.id)
-        assertEquals(1L, mood.id)
         assertNotNull(mood.scale)
-        assertEquals(3, mood.scale.value)
+        assertEquals("PASSIVE", mood.scale)
         assertNull(mood.comment)
     }
 
     @Test
     fun `instance is created with comment successfully`() {
-        val mood = Mood(id = 1L, scale = MoodEnum.PASSIVE, comment = "test comment only")
+        val mood = MoodDTO(scale = MoodEnum.PASSIVE.name, comment = "test comment only")
 
         assertNotNull(mood)
-        assertNotNull(mood.id)
-        assertEquals(1L, mood.id)
         assertNotNull(mood.scale)
-        assertEquals(3, mood.scale.value)
+        assertEquals("PASSIVE", mood.scale)
         assertNotNull(mood.comment)
         assertTrue(mood.comment!!.contains("test comment"))
     }
 
     @Test
     fun `instance is created successfully and is modifiable`() {
-        val mood = Mood(id = 1L,scale = MoodEnum.PASSIVE, comment = "test comment only")
+        val mood = MoodDTO(scale = MoodEnum.PASSIVE.name, comment = "test comment only")
 
         assertNotNull(mood)
-        assertNotNull(mood.id)
-        assertEquals(1L, mood.id)
         assertNotNull(mood.scale)
-        assertEquals(3, mood.scale.value)
+        assertEquals("PASSIVE", mood.scale)
         assertNotNull(mood.comment)
         assertTrue(mood.comment!!.contains("test comment"))
 
-        mood.id = 3L
-        mood.scale = MoodEnum.GOOD
+        mood.scale = MoodEnum.GOOD.name
         mood.comment = "test comment modified"
 
-        assertNotNull(mood.id)
-        assertEquals(3L, mood.id)
         assertNotNull(mood.scale)
-        assertEquals(4, mood.scale.value)
+        assertEquals("GOOD", mood.scale)
         assertNotNull(mood.comment)
         assertTrue(mood.comment!!.contains("modified"))
     }
