@@ -1,14 +1,15 @@
 package com.thoughtworks.op.microserviceprobe.model
 
+import com.thoughtworks.op.microserviceprobe.BaseUT
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import java.time.OffsetDateTime
 
-class ErrorDTOTest {
+class ErrorDTOUT : BaseUT() {
 
     @Test
     fun `instance is created without message successfully`() {
-        val error = ErrorDTO(message = null)
+        val error = buildErrorDTO()
 
         assertNotNull(error)
         assertNull(error.message)
@@ -18,7 +19,7 @@ class ErrorDTOTest {
 
     @Test
     fun `instance is created with message successfully`() {
-        val error = ErrorDTO(message = "test message")
+        val error = buildErrorDTO("test message")
 
         assertNotNull(error)
         assertNotNull(error.message)
@@ -29,7 +30,7 @@ class ErrorDTOTest {
 
     @Test
     fun `instance is created successfully and is modifiable`() {
-        val error = ErrorDTO(message = "test message")
+        val error = buildErrorDTO("test message")
 
         assertNotNull(error)
         assertNotNull(error.message)

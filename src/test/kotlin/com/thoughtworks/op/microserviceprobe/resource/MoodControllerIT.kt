@@ -27,9 +27,9 @@ class MoodControllerIT(
         val moods = webTestClient.get()
             .uri("/moods")
             .exchange()
-            .expectHeader().contentType(MediaType.APPLICATION_JSON_VALUE)
-            .expectStatus().isOk
-            .expectBodyList(MoodDTO::class.java)
+                .expectHeader().contentType(MediaType.APPLICATION_JSON_VALUE)
+                .expectStatus().isOk
+                .expectBodyList(MoodDTO::class.java)
             .returnResult().responseBody
 
             assertNotNull(moods)
@@ -45,9 +45,9 @@ class MoodControllerIT(
             .contentType(MediaType.APPLICATION_JSON)
             .bodyValue(MoodDTO(scale = MoodEnum.GOOD.name, comment = null))
             .exchange()
-            .expectHeader().contentType(MediaType.APPLICATION_JSON_VALUE)
-            .expectStatus().isOk
-            .expectBody(MoodDTO::class.java)
+                .expectHeader().contentType(MediaType.APPLICATION_JSON_VALUE)
+                .expectStatus().isOk
+                .expectBody(MoodDTO::class.java)
             .returnResult().responseBody
 
         assertNotNull(moodCreated)
@@ -61,9 +61,9 @@ class MoodControllerIT(
         val meanMoods = webTestClient.get()
             .uri("/moods/mean")
             .exchange()
-            .expectHeader().contentTypeCompatibleWith(MediaType.TEXT_PLAIN_VALUE)
-            .expectStatus().isOk
-            .expectBody(String::class.java)
+                .expectHeader().contentTypeCompatibleWith(MediaType.TEXT_PLAIN_VALUE)
+                .expectStatus().isOk
+                .expectBody(String::class.java)
             .returnResult().responseBody
 
         assertNotNull(meanMoods)

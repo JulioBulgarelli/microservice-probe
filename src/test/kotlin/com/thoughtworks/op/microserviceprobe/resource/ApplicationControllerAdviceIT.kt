@@ -34,9 +34,9 @@ class ApplicationControllerAdviceIT(
         val error = webTestClient.get()
             .uri("/moods/mean")
             .exchange()
-            .expectHeader().contentTypeCompatibleWith(MediaType.APPLICATION_JSON_VALUE)
-            .expectStatus().is5xxServerError
-            .expectBody(ErrorDTO::class.java)
+                .expectHeader().contentTypeCompatibleWith(MediaType.APPLICATION_JSON_VALUE)
+                .expectStatus().is5xxServerError
+                .expectBody(ErrorDTO::class.java)
             .returnResult().responseBody
 
         assertNotNull(error)

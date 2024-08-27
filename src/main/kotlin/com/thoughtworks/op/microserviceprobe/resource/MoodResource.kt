@@ -18,7 +18,7 @@ import reactor.core.publisher.Mono
 
 interface MoodResource {
 
-    @Operation(summary = "Get all moods")
+    @Operation(summary = "Get all moods", tags = ["Mood"])
     @ApiResponses(value = [
         ApiResponse(responseCode = "200", description = "OK", content = arrayOf(
             Content(mediaType = MediaType.APPLICATION_JSON_VALUE, array = (ArraySchema(schema = Schema(implementation = MoodDTO::class))))
@@ -30,7 +30,7 @@ interface MoodResource {
     @GetMapping("/moods", produces = [MediaType.APPLICATION_JSON_VALUE])
     fun getMoods(): Flux<MoodDTO>
 
-    @Operation(summary = "Create a mood")
+    @Operation(summary = "Create a mood", tags = ["Mood"])
     @RequestBody(content = arrayOf(
         Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = Schema(implementation = MoodDTO::class))
     ))
@@ -45,7 +45,7 @@ interface MoodResource {
     @PostMapping("/moods", consumes = [MediaType.APPLICATION_JSON_VALUE], produces = [MediaType.APPLICATION_JSON_VALUE])
     fun postMood(@Validated @org.springframework.web.bind.annotation.RequestBody moodDTO: MoodDTO): Mono<MoodDTO>
 
-    @Operation(summary = "Get mean mood")
+    @Operation(summary = "Get mean mood", tags = ["Mood"])
     @ApiResponses(value = [
         ApiResponse(responseCode = "200", description = "OK", content = arrayOf(
             Content(mediaType = MediaType.TEXT_PLAIN_VALUE, schema = Schema(implementation = String::class))

@@ -3,7 +3,7 @@ package com.thoughtworks.op.microserviceprobe.model
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-class MoodEnumTest {
+class MoodEnumUT {
 
     @Test
     fun `gets the correct value of the Enum`() {
@@ -25,6 +25,17 @@ class MoodEnumTest {
         assertEquals(MoodEnum.PASSIVE, mood1)
 
         val mood2: MoodEnum = MoodEnum.fromValue(4)
+
+        assertEquals(MoodEnum.GOOD, mood2)
+    }
+
+    @Test
+    fun `gets the Enum by its name`() {
+        val mood1: MoodEnum = MoodEnum.valueOf("PASSIVE")
+
+        assertEquals(MoodEnum.PASSIVE, mood1)
+
+        val mood2: MoodEnum = MoodEnum.valueOf("GOOD")
 
         assertEquals(MoodEnum.GOOD, mood2)
     }

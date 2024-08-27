@@ -1,13 +1,14 @@
 package com.thoughtworks.op.microserviceprobe.model
 
+import com.thoughtworks.op.microserviceprobe.BaseUT
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
-class MoodTest {
+class MoodUT : BaseUT() {
 
     @Test
     fun `instance is created without comment successfully`() {
-        val mood = Mood(id = 1L, scale = MoodEnum.PASSIVE, comment = null)
+        val mood = buildMood(1L, MoodEnum.PASSIVE)
 
         assertNotNull(mood)
         assertNotNull(mood.id)
@@ -19,7 +20,7 @@ class MoodTest {
 
     @Test
     fun `instance is created with comment successfully`() {
-        val mood = Mood(id = 1L, scale = MoodEnum.PASSIVE, comment = "test comment only")
+        val mood = buildMood(1L, MoodEnum.PASSIVE, "test comment only")
 
         assertNotNull(mood)
         assertNotNull(mood.id)
@@ -32,7 +33,7 @@ class MoodTest {
 
     @Test
     fun `instance is created successfully and is modifiable`() {
-        val mood = Mood(id = 1L,scale = MoodEnum.PASSIVE, comment = "test comment only")
+        val mood = buildMood(1L, MoodEnum.PASSIVE, "test comment only")
 
         assertNotNull(mood)
         assertNotNull(mood.id)

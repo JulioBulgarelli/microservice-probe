@@ -1,7 +1,7 @@
 # Microservice Probe
 
 [![Build](https://img.shields.io/badge/build-passing-brightgreen.svg?style=flat)]()
-[![Coverage](https://img.shields.io/badge/coverage-96%20%25-brightgreen.svg?style=flat)]()
+[![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen.svg?style=flat)]()
 
 ## Using it
 
@@ -49,6 +49,8 @@ services:
 ```
 
 ## Testing it
+> !! Tests depends on local Docker daemon being installed and running !!
+
 [OpenAPI (Swagger) UI](http://localhost:8080/swagger-ui.html)
 
 ```shell
