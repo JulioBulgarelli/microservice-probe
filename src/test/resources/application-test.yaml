@@ -1,5 +1,4 @@
 spring:
   r2dbc:
-    url: r2dbc:h2:file:///./build/tmp/probe_db
-  jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
+    username: postgres
+    password: tc

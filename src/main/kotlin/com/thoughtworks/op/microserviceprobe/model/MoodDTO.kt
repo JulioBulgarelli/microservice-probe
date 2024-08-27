@@ -1,8 +1,5 @@
 package com.thoughtworks.op.microserviceprobe.model
 
-import org.springframework.data.relational.core.mapping.Table
-
-@Table("moods")
 data class MoodDTO(
     var scale: String,
     var comment: String?,
